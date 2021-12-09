@@ -1,0 +1,4 @@
+roles:
+  - geerlingguy.nginx
+collections:
+  - mafalb.epel

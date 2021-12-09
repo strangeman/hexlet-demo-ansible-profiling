@@ -1,0 +1,48 @@
+---
+- name: Install packages
+  ansible.builtin.yum:
+    name:
+      - 'unzip'
+    state: present
+
+- name: Install packages
+  ansible.builtin.yum:
+    name:
+      - 'htop'
+    state: present
+
+- name: Install packages
+  ansible.builtin.yum:
+    name:
+      - 'vim'
+    state: present
+
+- name: Install packages
+  ansible.builtin.yum:
+    name:
+      - 'lsof'
+    state: present
+
+- name: Install packages
+  ansible.builtin.yum:
+    name:
+      - 'rsync'
+    state: present
+
+- name: Install packages
+  ansible.builtin.yum:
+    name:
+      - 'tmux'
+    state: present
+
+- name: Install packages
+  ansible.builtin.yum:
+    name:
+      - 'net-tools'
+    state: present
+
+- name: Unarchive a file that needs to be downloaded
+  ansible.builtin.unarchive:
+    src: https://github.com/cloudacademy/static-website-example/archive/refs/heads/master.zip
+    dest: /opt
+    remote_src: true

@@ -1,0 +1,7 @@
+---
+- hosts: vagrant
+  become: true
+  roles:
+    - mafalb.epel.release
+    - sample
+    - geerlingguy.nginx
