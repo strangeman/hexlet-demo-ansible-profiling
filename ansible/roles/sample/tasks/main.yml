@@ -9,40 +9,25 @@
   ansible.builtin.yum:
     name:
       - 'htop'
-    state: present
-
-- name: Install packages
-  ansible.builtin.yum:
-    name:
       - 'vim'
-    state: present
-
-- name: Install packages
-  ansible.builtin.yum:
-    name:
       - 'lsof'
-    state: present
-
-- name: Install packages
-  ansible.builtin.yum:
-    name:
       - 'rsync'
-    state: present
-
-- name: Install packages
-  ansible.builtin.yum:
-    name:
       - 'tmux'
-    state: present
-
-- name: Install packages
-  ansible.builtin.yum:
-    name:
       - 'net-tools'
     state: present
+  async: 1000
+  poll: 0
+  register: yum_async
 
 - name: Unarchive a file that needs to be downloaded
   ansible.builtin.unarchive:
     src: https://github.com/cloudacademy/static-website-example/archive/refs/heads/master.zip
     dest: /opt
     remote_src: true
+
+- name: Check async task
+  async_status:
+    jid: "{{ yum_async.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 180
